@@ -35,3 +35,12 @@ Route::prefix('/type')->group(function (){
 Route::prefix('/unit')->group(function (){
     Route::get('', 'UnitsController@index');
 });
+
+Route::prefix('/provincy')->group(function (){
+    Route::get('', 'IndonesiaController@provincy');
+    Route::get('/{id}', 'IndonesiaController@provincydetail');
+});
+
+Route::prefix('/regency')->group(function (){
+    Route::get('/{id}', 'IndonesiaController@regencydetail');
+});
