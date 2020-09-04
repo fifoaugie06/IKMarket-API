@@ -44,3 +44,10 @@ Route::prefix('/provincy')->group(function (){
 Route::prefix('/regency')->group(function (){
     Route::get('/{id}', 'IndonesiaController@regencydetail');
 });
+
+Route::prefix('/markets')->group(function (){
+    Route::get('', 'MarketsController@index');
+    Route::get('/{id}', 'MarketsController@show');
+    Route::delete('/{id}', 'MarketsController@delete');
+    Route::get('/category', 'MarketsController@category');
+});

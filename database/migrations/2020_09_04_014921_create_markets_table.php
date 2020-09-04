@@ -16,7 +16,7 @@ class CreateMarketsTable extends Migration
         Schema::create('markets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('provincy_id')->references('id')->on('provincies');
+            $table->foreignId('province_id')->references('id')->on('provincies');
             $table->foreignId('regency_id')->references('id')->on('regencies');
             $table->foreignId('district_id')->references('id')->on('districts');
             $table->text('fulladdress');
