@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Model\Product;
+use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
@@ -32,6 +32,14 @@ class ProductsController extends Controller
                 'data' => $product
             ]);
         }
+    }
+
+    public function create(Request $request)
+    {
+        $product = new Product();
+        $product->name = $request->name;
+
+        return $request;
     }
 
     public function delete($id)
