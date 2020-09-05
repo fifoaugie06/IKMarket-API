@@ -56,7 +56,7 @@ class MarketsController extends Controller
 
         $file = $request->file('image');
         $nama_file = "MR" . time() . "." . $file->getClientOriginalExtension();
-        $tujuan_upload = storage_path('\app\public\images\markets');
+        $tujuan_upload = storage_path('app/public/images/');
         $file->move($tujuan_upload, $nama_file);
 
         Market::create([
