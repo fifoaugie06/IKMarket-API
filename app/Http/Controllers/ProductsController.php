@@ -53,7 +53,7 @@ class ProductsController extends Controller
 
         $file = $request->file('image');
         $nama_file = "PR" . time() . "." . $file->getClientOriginalExtension();
-        $tujuan_upload = storage_path('\app\public\images\products');
+        $tujuan_upload = storage_path('app/public');
         $file->move($tujuan_upload, $nama_file);
 
         Product::create([
