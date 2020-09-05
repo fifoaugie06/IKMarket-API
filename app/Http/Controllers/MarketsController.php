@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Market;
 use App\Model\MarketCategory;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MarketsController extends Controller
 {
@@ -32,6 +34,44 @@ class MarketsController extends Controller
                 'data' => $market
             ]);
         }
+    }
+
+    public function create(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'image' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+            'province_id' => 'required',
+            'regency_id' => 'required',
+            'district_id' => 'required',
+            'fulladdress' => 'required',
+            'longlat' => 'required',
+            'market_category_id' => 'required'
+        ]);
+
+        if ($validator->fails()){
+            return response()->json(['status' => 400, 'message' => "Gambar Max 2MB"
+            ], 400);
+        }
+
+        $file = $request->file('image');
+        $nama_file = "MR" . time() . "." . $file->getClientOriginalExtension();
+        $tujuan_upload = storage_path('\app\public\images\markets');
+        $file->move($tujuan_upload, $nama_file);
+
+        Market::create([
+            'name' => $request->name,
+            'image' => $nama_file,
+            'province_id' => $request->province_id,
+            'regency_id' => $request->regency_id,
+            'district_id' => $request->district_id,
+            'fulladdress' => $request->fulladdress,
+            'longlat' => $request->longlat,
+            'market_category_id' => $request->market_category_id
+        ]);
+
+        return response()->json(['status' => 200, 'message' => 'Success Create Data'
+        ]);
     }
 
     public function delete($id)

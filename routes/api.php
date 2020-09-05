@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+Route::post('/adm1n/auth', 'AdminsController@auth');
 
 Route::prefix('/products')->group(function (){
     Route::get('', 'ProductsController@index');
@@ -49,6 +51,7 @@ Route::prefix('/regency')->group(function (){
 Route::prefix('/markets')->group(function (){
     Route::get('', 'MarketsController@index');
     Route::get('/{id}', 'MarketsController@show');
+    Route::post('', 'MarketsController@create');
     Route::delete('/{id}', 'MarketsController@delete');
     Route::get('/category', 'MarketsController@category');
 });

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Market extends Model
 {
     use SoftDeletes;
+    protected $fillable = ['name', 'image', 'province_id', 'regency_id', 'district_id', 'fulladdress', 'longlat', 'market_category_id'];
 
     public function provincy()
     {
