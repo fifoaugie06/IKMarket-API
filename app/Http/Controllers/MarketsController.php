@@ -46,6 +46,8 @@ class MarketsController extends Controller
             'district_id' => 'required',
             'fulladdress' => 'required',
             'longlat' => 'required',
+            'open_at' => 'required',
+            'description' => 'required',
             'market_category_id' => 'required'
         ]);
 
@@ -67,6 +69,8 @@ class MarketsController extends Controller
             'district_id' => $request->district_id,
             'fulladdress' => $request->fulladdress,
             'longlat' => $request->longlat,
+            'open_at' => $request->open_at,
+            'description' => $request->description,
             'market_category_id' => $request->market_category_id
         ]);
 

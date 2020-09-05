@@ -22,6 +22,8 @@ class CreateMarketsTable extends Migration
             $table->foreignId('district_id')->references('id')->on('districts');
             $table->text('fulladdress');
             $table->string('longlat');
+            $table->string('open_at');
+            $table->text('description');
             $table->foreignId('market_category_id')->references('id')->on('market_categories');
             $table->timestamps();
             $table->softDeletes();
