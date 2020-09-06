@@ -13,7 +13,7 @@ class MarketsController extends Controller
     {
         $market = Market::with([
             'provincy', 'regency', 'district', 'market_category'
-        ])->get();
+        ])->orderBy('id', 'desc')->get();
 
         return response()->json(['status' => 200, 'message' => 'Success Retrieving Data', 'data_count' => count($market),
             'data' => $market

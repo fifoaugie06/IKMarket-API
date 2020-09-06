@@ -12,7 +12,7 @@ class ProductsController extends Controller
     {
         $product = Product::with([
             'type', 'quality', 'unit'
-        ])->get();
+        ])->orderBy('id', 'desc')->get();
 
         return response()->json(['status' => 200, 'message' => 'Success Retrieving Data', 'data_count' => count($product),
             'data' => $product
