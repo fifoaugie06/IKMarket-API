@@ -29,6 +29,7 @@ Route::prefix('/products')->group(function (){
 
 Route::prefix('/quality')->group(function (){
     Route::get('', 'QualityController@index');
+    Route::post('', 'QualityController@create');
 });
 
 Route::prefix('/type')->group(function (){
