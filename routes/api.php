@@ -50,9 +50,9 @@ Route::prefix('/regency')->group(function (){
 });
 
 Route::prefix('/markets')->group(function (){
+    Route::get('/category', 'MarketsController@category');
     Route::get('', 'MarketsController@index');
     Route::get('/{id}', 'MarketsController@show');
     Route::post('', 'MarketsController@create');
     Route::delete('/{id}', 'MarketsController@delete');
-    Route::get('/category', 'MarketsController@category');
 });

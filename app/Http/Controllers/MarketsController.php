@@ -95,10 +95,10 @@ class MarketsController extends Controller
 
     public function category()
     {
-        $category = MarketCategory::all();
+        $marketCategory = MarketCategory::all();
 
-        return response()->json(['status' => 200, 'message' => 'Success Retrieving Data', 'data_count' => count($category),
-            'data' => $category
+        return response()->json(['status' => 200, 'message' => 'Success Retrieving Data', 'data_count' => count($marketCategory),
+            'data' => $marketCategory
         ]);
     }
 }
