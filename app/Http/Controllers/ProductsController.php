@@ -19,6 +19,28 @@ class ProductsController extends Controller
         ]);
     }
 
+    public function getByPriceMax()
+    {
+        $product = Product::with([
+            'type', 'quality', 'unit'
+        ])->orderBy('price', 'desc')->limit(5)->get();
+
+        return response()->json(['status' => 200, 'message' => 'Success Retrieving Data', 'data_count' => count($product),
+            'data' => $product
+        ]);
+    }
+
+    public function getByPriceMin()
+    {
+        $product = Product::with([
+            'type', 'quality', 'unit'
+        ])->orderBy('price', 'asc')->limit(5)->get();
+
+        return response()->json(['status' => 200, 'message' => 'Success Retrieving Data', 'data_count' => count($product),
+            'data' => $product
+        ]);
+    }
+
     public function show($id)
     {
         $product = Product::with([
@@ -46,7 +68,7 @@ class ProductsController extends Controller
             'unit_id' => 'required'
         ]);
 
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return response()->json(['status' => 400, 'message' => 'Gambar Max 2MB'
             ], 400);
         }

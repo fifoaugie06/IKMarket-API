@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/adm1n/auth', 'AdminsController@auth');
 
 Route::prefix('/products')->group(function (){
+    Route::get('/getByPriceMax', 'ProductsController@getByPriceMax');
+    Route::get('/getByPriceMin', 'ProductsController@getByPriceMin');
     Route::get('', 'ProductsController@index');
     Route::get('/{id}', 'ProductsController@show');
     Route::post('', 'ProductsController@create');
