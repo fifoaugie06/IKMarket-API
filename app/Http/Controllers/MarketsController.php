@@ -51,7 +51,7 @@ class MarketsController extends Controller
             'market_category_id' => 'required'
         ]);
 
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return response()->json(['status' => 400, 'message' => "Gambar Max 2MB"
             ], 400);
         }
@@ -76,6 +76,32 @@ class MarketsController extends Controller
 
         return response()->json(['status' => 200, 'message' => 'Success Create Data'
         ]);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $market = Market::find($id);
+
+        if ($market === null) {
+            return response()->json(['status' => 404, 'message' => 'Record Not Found'
+            ], 404);
+        } else {
+            Market::where('id', $id)
+                ->update([
+                    'name' => $request->name,
+                    'province_id' => $request->province_id,
+                    'regency_id' => $request->regency_id,
+                    'district_id' => $request->district_id,
+                    'fulladdress' => $request->fulladdress,
+                    'longlat' => $request->longlat,
+                    'open_at' => $request->open_at,
+                    'description' => $request->description,
+                    'market_category_id' => $request->market_category_id
+                ]);
+
+            return response()->json(['status' => 200, 'message' => 'Success Update Data'
+            ], 200);
+        }
     }
 
     public function delete($id)
