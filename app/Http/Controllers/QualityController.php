@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Product;
 use App\Model\Quality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -17,18 +18,25 @@ class QualityController extends Controller
         ]);
     }
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         $validator = Validator::make($request->all(), [
-           'name' => 'required'
+            'name' => 'required'
         ]);
 
-        if ($validator->fails()){
+        if ($validator->fails()) {
             return response()->json(['status' => 400, 'message' => "Bad Request"
             ], 400);
         }
 
+        $quality = Quality::where('name', 'like', $request->name)->get();
+        if (count($quality) !== 0) {
+            return response()->json(['status' => 400, 'message' => "Sudah Terdaftar"
+            ], 400);
+        }
+
         Quality::create([
-           'name' => $request->name
+            'name' => $request->name
         ]);
 
         return response()->json(['status' => 200, 'message' => 'Success Create Data'
