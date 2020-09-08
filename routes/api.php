@@ -57,5 +57,6 @@ Route::prefix('/markets')->group(function (){
     Route::get('', 'MarketsController@index');
     Route::get('/{id}', 'MarketsController@show');
     Route::post('', 'MarketsController@create');
+    Route::post('/{id}', 'MarketsController@edit');
     Route::delete('/{id}', 'MarketsController@delete');
 });
