@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/adm1n/auth', 'AdminsController@auth');
 
-Route::prefix('/products')->group(function (){
+Route::prefix('/products')->group(function () {
     Route::get('/getByPriceMax', 'ProductsController@getByPriceMax');
     Route::get('/getByPriceMin', 'ProductsController@getByPriceMin');
     Route::get('', 'ProductsController@index');
@@ -30,33 +30,33 @@ Route::prefix('/products')->group(function (){
     Route::delete('/{id}', 'ProductsController@delete');
 });
 
-Route::prefix('/quality')->group(function (){
+Route::prefix('/quality')->group(function () {
     Route::get('', 'QualityController@index');
     Route::post('', 'QualityController@create');
 });
 
-Route::prefix('/type')->group(function (){
+Route::prefix('/type')->group(function () {
     Route::get('', 'TypesController@index');
 });
 
-Route::prefix('/unit')->group(function (){
+Route::prefix('/unit')->group(function () {
     Route::get('', 'UnitsController@index');
 });
 
-Route::prefix('/provincy')->group(function (){
+Route::prefix('/provincy')->group(function () {
     Route::get('', 'IndonesiaController@provincy');
     Route::get('/{id}', 'IndonesiaController@provincydetail');
 });
 
-Route::prefix('/regency')->group(function (){
+Route::prefix('/regency')->group(function () {
     Route::get('/{id}', 'IndonesiaController@regencydetail');
 });
 
-Route::prefix('/markets')->group(function (){
+Route::prefix('/markets')->group(function () {
     Route::get('/category', 'MarketsController@category');
     Route::get('', 'MarketsController@index');
     Route::get('/{id}', 'MarketsController@show');
     Route::post('', 'MarketsController@create');
-    Route::post('/{id}', 'MarketsController@edit');
+    Route::put('/{id}', 'MarketsController@edit');
     Route::delete('/{id}', 'MarketsController@delete');
 });
