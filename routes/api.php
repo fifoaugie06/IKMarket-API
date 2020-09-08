@@ -26,6 +26,7 @@ Route::prefix('/products')->group(function (){
     Route::get('', 'ProductsController@index');
     Route::get('/{id}', 'ProductsController@show');
     Route::post('', 'ProductsController@create');
+    Route::put('/{id}', 'ProductsController@edit');
     Route::delete('/{id}', 'ProductsController@delete');
 });
 

@@ -91,6 +91,28 @@ class ProductsController extends Controller
         ]);
     }
 
+    public function edit(Request $request, $id)
+    {
+        $product = Product::find($id);
+
+        if ($product === null) {
+            return response()->json(['status' => 404, 'message' => 'Record Not Found'
+            ], 404);
+        } else {
+            Product::where('id', $id)
+                ->update([
+                    'name' => $request->name,
+                    'type_id' => $request->type_id,
+                    'price' => $request->price,
+                    'quality_id' => $request->quality_id,
+                    'unit_id' => $request->unit_id
+                ]);
+
+            return response()->json(['status' => 200, 'message' => 'Success Update Data'
+            ], 200);
+        }
+    }
+
     public function delete($id)
     {
         $product = Product::find($id);
